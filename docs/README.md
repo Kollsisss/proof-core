@@ -73,10 +73,10 @@
 ## **[whitepaper](whitepaper.md).**
 
 ## Architecture
-Check out our full  [architecture documentation](xyz_architecture.md).
+Check out our full  [architecture documentation](architecture.md).
 
 ## Contributing
-We welcome contributions from the community. Please read our [contributing guidelines](xyz_contributing.md) before submitting pull requests.
+We welcome contributions from the community. Please read our [contributing guidelines](contributing.md) before submitting pull requests.
 
 ## License
 
