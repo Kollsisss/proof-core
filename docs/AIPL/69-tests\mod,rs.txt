@@ -1,0 +1,12 @@
+LANG: rust
+
+FINDEX: 69
+FILE: tests/mod.rs
+
+MOD: unit
+MOD: integration
+
+DOC: """
+This module serves as the entry point for all tests in the XYZ Blockchain project.
+It includes both unit tests and integration tests.
+"""

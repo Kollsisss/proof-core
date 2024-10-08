@@ -1,0 +1,17 @@
+LANG: rust
+
+FINDEX: 76
+FILE: src/node/mod.rs
+
+MOD: full_node
+MOD: light_client
+MOD: node_sync
+
+PUB_USE: full_node::FullNode
+PUB_USE: light_client::LightClient
+PUB_USE: node_sync::NodeSynchronizer
+
+DOC: """
+This module contains implementations of different node types for the XYZ Blockchain network.
+It includes full nodes, light clients, and synchronization functionality.
+"""

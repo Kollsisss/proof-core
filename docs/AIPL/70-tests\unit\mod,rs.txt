@@ -1,0 +1,14 @@
+LANG: rust
+
+FINDEX: 70
+FILE: tests/unit/mod.rs
+
+MOD: core
+MOD: crypto
+MOD: wallet
+MOD: network
+
+DOC: """
+This module contains all unit tests for the XYZ Blockchain components.
+It includes tests for core functionality, cryptographic operations, wallet features, and networking.
+"""

@@ -1,0 +1,20 @@
+LANG: rust
+
+FINDEX: 68
+FILE: src/main.rs
+
+USE: crate::cli::Cli
+USE: crate::core::Blockchain
+USE: crate::config::Config
+USE: structopt::StructOpt
+
+FN: main() -> Result<(), Box<dyn std::error::Error>>
+    // Загрузка конфигурации
+    // Инициализация блокчейна
+    // Создание и запуск CLI
+    // Обработка результатов выполнения команд
+
+DOC: """
+This is the main entry point for the XYZ Blockchain node application.
+It initializes the blockchain, sets up the CLI, and handles the execution of user commands.
+"""

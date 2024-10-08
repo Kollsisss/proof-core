@@ -1,0 +1,29 @@
+LANG: rust
+
+FINDEX: 75
+FILE: src/layer3/zk_rollups/rollup_batch.rs
+
+USE: crate::core::Transaction
+USE: crate::crypto::hash::Hash
+
+STRUCT: RollupBatch
+    FIELD: transactions: Vec<Transaction>
+    FIELD: merkle_root: Hash
+    FIELD: zk_proof: ZKProof
+
+IMPL: RollupBatch
+    FN: new(transactions: Vec<Transaction>) -> Result<Self, RollupError>
+    FN: verify(&self) -> bool
+    FN: merkle_root(&self) -> Hash
+
+STRUCT: ZKProof
+    FIELD: proof_data: Vec<u8>
+
+ENUM: RollupError
+    VARIANT: InvalidTransactions
+    VARIANT: ProofGenerationFailed
+
+DOC: """
+This module implements the rollup batch structure for ZK-Rollups in Layer 3 of the XYZ Blockchain.
+It includes functionality for creating and verifying batches of transactions with zero-knowledge proofs.
+"""

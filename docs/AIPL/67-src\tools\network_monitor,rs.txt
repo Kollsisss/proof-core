@@ -1,0 +1,39 @@
+LANG: rust
+
+FINDEX: 67
+FILE: src/tools/network_monitor.rs
+
+USE: crate::network::P2PNetwork
+USE: crate::core::Block
+USE: std::collections::HashMap
+USE: tokio::time::{Duration, Interval}
+
+STRUCT: NetworkMonitor
+    FIELD: network: P2PNetwork
+    FIELD: peer_stats: HashMap<PeerId, PeerStats>
+
+STRUCT: PeerStats
+    FIELD: connected_since: Instant
+    FIELD: blocks_received: u64
+    FIELD: transactions_received: u64
+
+IMPL: NetworkMonitor
+    FN: new(network: P2PNetwork) -> Self
+    FN: start_monitoring(&mut self) -> Result<(), MonitorError>
+    FN: collect_stats(&mut self) -> Result<NetworkStats, MonitorError>
+    FN: generate_report(&self) -> String
+
+STRUCT: NetworkStats
+    FIELD: total_peers: usize
+    FIELD: average_peer_uptime: Duration
+    FIELD: total_blocks_received: u64
+    FIELD: total_transactions_received: u64
+
+ENUM: MonitorError
+    VARIANT: NetworkDisconnected
+    VARIANT: StatCollectionFailed
+
+DOC: """
+The NetworkMonitor provides functionality to monitor and analyze the P2P network of the XYZ Blockchain.
+It collects statistics on peer connections, block propagation, and transaction dissemination.
+"""

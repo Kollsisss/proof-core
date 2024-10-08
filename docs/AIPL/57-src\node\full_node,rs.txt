@@ -1,0 +1,31 @@
+LANG: rust
+
+FINDEX: 57
+FILE: src/node/full_node.rs
+
+USE: crate::core::{Blockchain, Transaction, Block}
+USE: crate::network::P2PNetwork
+USE: crate::consensus::ConsensusEngine
+
+STRUCT: FullNode
+    FIELD: blockchain: Blockchain
+    FIELD: network: P2PNetwork
+    FIELD: consensus: ConsensusEngine
+
+IMPL: FullNode
+    FN: new(config: NodeConfig) -> Result<Self, NodeError>
+    FN: start(&mut self) -> Result<(), NodeError>
+    FN: process_transaction(&mut self, transaction: Transaction) -> Result<(), NodeError>
+    FN: process_block(&mut self, block: Block) -> Result<(), NodeError>
+    FN: sync_with_network(&mut self) -> Result<(), NodeError>
+
+ENUM: NodeError
+    VARIANT: NetworkError
+    VARIANT: ConsensusError
+    VARIANT: BlockchainError
+    VARIANT: SyncError
+
+DOC: """
+The FullNode struct represents a full node in the XYZ Blockchain network.
+It manages the blockchain, network communication, and consensus mechanisms.
+"""

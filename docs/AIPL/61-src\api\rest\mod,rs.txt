@@ -1,0 +1,27 @@
+LANG: rust
+
+FINDEX: 61
+FILE: src/api/rest/mod.rs
+
+USE: actix_web::{web, App, HttpServer, Responder}
+USE: crate::core::{Blockchain, Transaction}
+
+STRUCT: RestApi
+    FIELD: blockchain: Blockchain
+
+IMPL: RestApi
+    FN: new(blockchain: Blockchain) -> Self
+    FN: start(&self, address: &str) -> Result<(), RestApiError>
+
+FN: get_block(blockchain: web::Data<Blockchain>, block_height: web::Path<u64>) -> impl Responder
+FN: get_transaction(blockchain: web::Data<Blockchain>, tx_hash: web::Path<Hash>) -> impl Responder
+FN: submit_transaction(blockchain: web::Data<Blockchain>, tx: web::Json<Transaction>) -> impl Responder
+
+ENUM: RestApiError
+    VARIANT: ServerStartFailed
+    VARIANT: DatabaseError
+
+DOC: """
+This module implements the REST API for the XYZ Blockchain.
+It provides HTTP endpoints for querying blockchain data and submitting transactions.
+"""

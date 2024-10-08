@@ -1,0 +1,28 @@
+LANG: rust
+
+FINDEX: 58
+FILE: src/node/light_client.rs
+
+USE: crate::core::{Block, Transaction, BlockHeader}
+USE: crate::crypto::hash::Hash
+USE: crate::network::P2PNetwork
+
+STRUCT: LightClient
+    FIELD: headers: Vec<BlockHeader>
+    FIELD: network: P2PNetwork
+
+IMPL: LightClient
+    FN: new(config: LightClientConfig) -> Result<Self, LightClientError>
+    FN: sync_headers(&mut self) -> Result<(), LightClientError>
+    FN: verify_transaction(&self, transaction: &Transaction, proof: &MerkleProof) -> Result<bool, LightClientError>
+    FN: get_latest_block_height(&self) -> u64
+
+ENUM: LightClientError
+    VARIANT: NetworkError
+    VARIANT: SyncError
+    VARIANT: InvalidProof
+
+DOC: """
+The LightClient struct implements a light node for the XYZ Blockchain.
+It maintains block headers and provides methods for transaction verification without storing the full blockchain.
+"""

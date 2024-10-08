@@ -1,0 +1,30 @@
+LANG: rust
+
+FINDEX: 62
+FILE: src/api/websocket/trust_wallet_events.rs
+
+USE: tokio::sync::mpsc
+USE: warp::ws::{Message, WebSocket}
+USE: crate::wallet::TrustWalletTransaction
+
+STRUCT: TrustWalletEventStream
+    FIELD: tx: mpsc::Sender<TrustWalletEvent>
+
+ENUM: TrustWalletEvent
+    VARIANT: NewTransaction(TrustWalletTransaction)
+    VARIANT: BalanceUpdate(String, u64)
+
+IMPL: TrustWalletEventStream
+    FN: new() -> (Self, mpsc::Receiver<TrustWalletEvent>)
+    FN: handle_connection(websocket: WebSocket, event_stream: TrustWalletEventStream)
+
+FN: start_websocket_server(address: &str) -> Result<(), WebSocketError>
+
+ENUM: WebSocketError
+    VARIANT: ConnectionFailed
+    VARIANT: MessageSendFailed
+
+DOC: """
+This module implements a WebSocket server for real-time Trust Wallet events.
+It allows clients to subscribe to events such as new transactions and balance updates.
+"""

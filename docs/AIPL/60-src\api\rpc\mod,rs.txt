@@ -1,0 +1,30 @@
+LANG: rust
+
+FINDEX: 60
+FILE: src/api/rpc/mod.rs
+
+USE: jsonrpc_core::{IoHandler, Result as JsonRpcResult}
+USE: crate::core::{Blockchain, Transaction}
+
+STRUCT: RpcServer
+    FIELD: blockchain: Blockchain
+
+IMPL: RpcServer
+    FN: new(blockchain: Blockchain) -> Self
+    FN: start(&self, address: &str) -> Result<(), RpcError>
+
+TRAIT: BlockchainRpc
+    FN: get_block(&self, height: u64) -> JsonRpcResult<Block>
+    FN: get_transaction(&self, tx_hash: Hash) -> JsonRpcResult<Transaction>
+    FN: submit_transaction(&self, tx: Transaction) -> JsonRpcResult<Hash>
+
+IMPL: BlockchainRpc for RpcServer
+
+ENUM: RpcError
+    VARIANT: ServerStartFailed
+    VARIANT: MethodNotFound
+
+DOC: """
+This module implements the RPC server for the XYZ Blockchain.
+It provides methods for querying blockchain data and submitting transactions through a JSON-RPC interface.
+"""

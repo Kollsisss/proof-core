@@ -1,0 +1,49 @@
+Here's the translation of your text into English:
+
+---
+
+**20 GOLDEN RULES**
+
+1. **Always conduct research and provide the best version of the code for our needs, using the most modern approaches and technologies.**
+
+2. **Complete implementations without loading; provide ready-to-run code.**
+
+3. **If I write a file gen/file gen, it means you should generate the ready code based on the AIPL file, strictly following the rules and working flawlessly.**
+
+4. **Focus on quality and functionality.**
+
+5. **Always check the code for errors and bugs before presenting it. Ensure that all dependencies are correctly declared in Cargo.toml. Use descriptive names for functions and variables that reflect their purpose. Optimize the code for performance without sacrificing readability.**
+
+6. **Strict adherence to Rust documentation.**
+
+7. **Write all documentation and comments in English. Use /// for documentation, following Rustdoc standards. Document all public functions, structures, and modules. Include descriptions of parameters and return values. Add usage examples in the documentation.**
+
+8. **Complete implementation of functions.**
+
+9. **Fully implement all functions without leaving skeletal code. Create modular and reusable functions. Verify the logic of each function for correctness. Handle edge cases and input errors properly.**
+
+10. **Comprehensive testing.**
+
+11. **Add modular tests for each function in separate test modules. Use #[cfg(test)] for test modules. Generate tests for typical cases, edge conditions, and errors.**
+
+12. **Proper management of dependencies.**
+
+13. **Declare all necessary crates in Cargo.toml with the latest stable versions. Avoid unnecessary dependencies. Use only stable versions suitable for production.**
+
+14. **Production readiness.**
+
+15. **Prepare all files for direct use in a production environment. Follow best practices for security and optimization. Use `cargo fmt` for automatic formatting. Include detailed documentation for deployment and configuration.**
+
+16. **Blockchain development specifics.**
+
+17. **Apply best practices for secure transaction processing and resource management. When implementing smart contracts, follow best practices for INK!. Optimize blockchain code for minimal resource consumption.**
+
+18. **Integration and UX.**
+
+19. **Ensure proper integration with APIs or blockchain nodes. If there is a UI component, follow good UX practices.**
+
+20. **Always adhere to the project’s file structure. Maintain a comprehensive understanding of the project at all times. Never deviate from the official assignment and the final goals of the project.**
+
+I will strictly follow these rules for every task to ensure the highest quality of work on the XYZ Blockchain project.
+
+**AIPL - AI Prompt Language - these are files with a .txt extension where each file corresponds to a project file, and this file contains explanations on how to create the actual file.**

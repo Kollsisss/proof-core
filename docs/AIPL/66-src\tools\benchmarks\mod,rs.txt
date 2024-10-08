@@ -1,0 +1,23 @@
+LANG: rust
+
+FINDEX: 66
+FILE: src/tools/benchmarks/mod.rs
+
+USE: crate::core::{Blockchain, Transaction}
+USE: crate::crypto::hash::Hash
+USE: std::time::{Duration, Instant}
+
+STRUCT: BenchmarkResult
+    FIELD: operation: String
+    FIELD: duration: Duration
+    FIELD: transactions_per_second: f64
+
+FN: run_benchmarks(blockchain: &mut Blockchain) -> Vec<BenchmarkResult>
+FN: benchmark_transaction_processing(blockchain: &mut Blockchain, num_transactions: usize) -> BenchmarkResult
+FN: benchmark_block_creation(blockchain: &mut Blockchain, num_blocks: usize) -> BenchmarkResult
+FN: generate_test_transactions(num_transactions: usize) -> Vec<Transaction>
+
+DOC: """
+This module provides benchmarking tools for the XYZ Blockchain.
+It includes functions to measure performance of key operations such as transaction processing and block creation.
+"""

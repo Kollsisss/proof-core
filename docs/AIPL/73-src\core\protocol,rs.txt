@@ -1,0 +1,27 @@
+LANG: rust
+
+FINDEX: 73
+FILE: src/core/protocol.rs
+
+USE: crate::core::{Block, Transaction}
+USE: crate::crypto::hash::Hash
+
+ENUM: ProtocolMessage
+    VARIANT: NewBlock(Block)
+    VARIANT: NewTransaction(Transaction)
+    VARIANT: GetBlock(Hash)
+    VARIANT: GetTransaction(Hash)
+
+TRAIT: ProtocolHandler
+    FN: handle_message(&self, message: ProtocolMessage) -> Result<(), ProtocolError>
+
+ENUM: ProtocolError
+    VARIANT: InvalidMessage
+    VARIANT: NetworkError
+    VARIANT: BlockNotFound
+    VARIANT: TransactionNotFound
+
+DOC: """
+This module defines the protocol messages and handlers for communication between nodes in the XYZ Blockchain network.
+It specifies the structure of messages for block and transaction propagation, as well as data requests.
+"""

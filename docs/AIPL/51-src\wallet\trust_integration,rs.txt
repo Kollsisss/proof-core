@@ -1,0 +1,22 @@
+LANG: rust
+
+FINDEX: 51
+FILE: src/wallet/trust_integration.rs
+
+USE: crate::core::Transaction
+USE: crate::wallet::{WalletError, TrustWalletAccount, TrustWalletTransaction}
+
+STRUCT: TrustWalletIntegration
+    FIELD: config: WalletConfig
+
+IMPL: TrustWalletIntegration
+    FN: new(config: WalletConfig) -> Self
+    FN: create_account() -> Result<TrustWalletAccount, WalletError>
+    FN: get_balance(account: &TrustWalletAccount) -> Result<u64, WalletError>
+    FN: send_transaction(from: &TrustWalletAccount, to: &str, amount: u64) -> Result<TrustWalletTransaction, WalletError>
+    FN: sign_transaction(account: &TrustWalletAccount, transaction: &Transaction) -> Result<Signature, WalletError>
+
+DOC: """
+The TrustWalletIntegration struct provides methods for interacting with Trust Wallet functionality.
+It handles account creation, balance queries, transaction sending, and transaction signing.
+"""

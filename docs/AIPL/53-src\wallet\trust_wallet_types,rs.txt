@@ -1,0 +1,28 @@
+LANG: rust
+
+FINDEX: 53
+FILE: src/wallet/trust_wallet_types.rs
+
+USE: crate::crypto::hash::Hash
+USE: crate::crypto::signatures::{PublicKey, Signature}
+
+STRUCT: TrustWalletAccount
+    FIELD: address: String
+    FIELD: public_key: PublicKey
+
+STRUCT: TrustWalletTransaction
+    FIELD: hash: Hash
+    FIELD: from: String
+    FIELD: to: String
+    FIELD: amount: u64
+    FIELD: signature: Signature
+
+IMPL: TrustWalletTransaction
+    FN: new(from: String, to: String, amount: u64) -> Self
+    FN: sign(&mut self, signature: Signature) -> Result<(), WalletError>
+    FN: verify(&self) -> bool
+
+DOC: """
+This module defines the data structures used for Trust Wallet integration.
+It includes types for accounts and transactions specific to the Trust Wallet ecosystem.
+"""

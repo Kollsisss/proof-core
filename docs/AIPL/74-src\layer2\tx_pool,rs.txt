@@ -1,0 +1,27 @@
+LANG: rust
+
+FINDEX: 74
+FILE: src/layer2/tx_pool.rs
+
+USE: crate::core::Transaction
+USE: crate::crypto::hash::Hash
+USE: std::collections::HashMap
+
+STRUCT: TransactionPool
+    FIELD: transactions: HashMap<Hash, Transaction>
+
+IMPL: TransactionPool
+    FN: new() -> Self
+    FN: add_transaction(&mut self, tx: Transaction) -> Result<(), TxPoolError>
+    FN: remove_transaction(&mut self, tx_hash: &Hash) -> Option<Transaction>
+    FN: get_transactions(&self, limit: usize) -> Vec<Transaction>
+
+ENUM: TxPoolError
+    VARIANT: DuplicateTransaction
+    VARIANT: PoolOverflow
+    VARIANT: InvalidTransaction
+
+DOC: """
+The TransactionPool manages unconfirmed transactions in the XYZ Blockchain.
+It provides functionality for adding, removing, and retrieving transactions from the pool.
+"""

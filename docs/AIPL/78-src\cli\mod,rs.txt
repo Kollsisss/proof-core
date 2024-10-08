@@ -1,0 +1,14 @@
+LANG: rust
+
+FINDEX: 78
+FILE: src/cli/mod.rs
+
+MOD: commands
+
+PUB_USE: commands::Command
+PUB_USE: commands::Cli
+
+DOC: """
+This module implements the command-line interface for the XYZ Blockchain node.
+It provides a set of commands for interacting with the blockchain and managing the node.
+"""

@@ -1,0 +1,15 @@
+LANG: rust
+
+FINDEX: 54
+FILE: src/wallet/transaction_formatter.rs
+
+USE: crate::core::Transaction
+USE: crate::wallet::TrustWalletTransaction
+
+FN: format_transaction(tx: &Transaction) -> Result<TrustWalletTransaction, WalletError>
+FN: parse_trust_wallet_transaction(tw_tx: &TrustWalletTransaction) -> Result<Transaction, WalletError>
+
+DOC: """
+This module provides utility functions for formatting transactions between XYZ Blockchain
+and Trust Wallet formats. It ensures compatibility between the two systems.
+"""

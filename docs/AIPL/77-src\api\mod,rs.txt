@@ -1,0 +1,17 @@
+LANG: rust
+
+FINDEX: 77
+FILE: src/api/mod.rs
+
+MOD: rpc
+MOD: rest
+MOD: websocket
+
+PUB_USE: rpc::RpcServer
+PUB_USE: rest::RestApi
+PUB_USE: websocket::TrustWalletEventStream
+
+DOC: """
+This module provides various API interfaces for interacting with the XYZ Blockchain.
+It includes RPC, REST, and WebSocket implementations for different use cases.
+"""

@@ -1,0 +1,24 @@
+LANG: rust
+
+FINDEX: 72
+FILE: tests/integration/trust_wallet_integration_tests.rs
+
+USE: crate::wallet::{TrustWalletIntegration, TrustWalletAccount}
+USE: crate::core::{Transaction, Blockchain}
+USE: crate::crypto::hash::Hash
+
+FN: test_create_trust_wallet_account() -> Result<(), TestError>
+FN: test_send_transaction_through_trust_wallet() -> Result<(), TestError>
+FN: test_sync_with_trust_wallet() -> Result<(), TestError>
+FN: test_trust_wallet_balance_update() -> Result<(), TestError>
+
+STRUCT: TestError
+    VARIANT: WalletCreationFailed
+    VARIANT: TransactionFailed
+    VARIANT: SyncFailed
+    VARIANT: BalanceUpdateFailed
+
+DOC: """
+This module contains integration tests for the Trust Wallet integration with XYZ Blockchain.
+It verifies account creation, transaction sending, synchronization, and balance updates.
+"""

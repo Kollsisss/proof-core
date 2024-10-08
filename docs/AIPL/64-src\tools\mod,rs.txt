@@ -1,0 +1,15 @@
+LANG: rust
+
+FINDEX: 64
+FILE: src/tools/mod.rs
+
+MOD: block_explorer
+MOD: benchmarks
+
+PUB_USE: block_explorer::BlockExplorer
+PUB_USE: benchmarks::run_benchmarks
+
+DOC: """
+This module contains various tools for the XYZ Blockchain, including a block explorer and benchmarking utilities.
+These tools are designed to aid in development, debugging, and performance analysis.
+"""

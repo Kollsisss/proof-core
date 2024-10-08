@@ -1,0 +1,44 @@
+LANG: rust
+
+FINDEX: 65
+FILE: src/tools/block_explorer/mod.rs
+
+USE: crate::core::{Block, Transaction, Blockchain}
+USE: crate::crypto::hash::Hash
+
+STRUCT: BlockExplorer
+    FIELD: blockchain: Blockchain
+
+IMPL: BlockExplorer
+    FN: new(blockchain: Blockchain) -> Self
+    FN: get_block_details(&self, height: u64) -> Result<BlockDetails, ExplorerError>
+    FN: get_transaction_details(&self, tx_hash: Hash) -> Result<TransactionDetails, ExplorerError>
+    FN: search(&self, query: &str) -> Result<SearchResult, ExplorerError>
+
+STRUCT: BlockDetails
+    FIELD: height: u64
+    FIELD: hash: Hash
+    FIELD: timestamp: u64
+    FIELD: transactions: Vec<Hash>
+
+STRUCT: TransactionDetails
+    FIELD: hash: Hash
+    FIELD: block_height: u64
+    FIELD: from: String
+    FIELD: to: String
+    FIELD: amount: u64
+
+ENUM: SearchResult
+    VARIANT: Block(BlockDetails)
+    VARIANT: Transaction(TransactionDetails)
+    VARIANT: NotFound
+
+ENUM: ExplorerError
+    VARIANT: BlockNotFound
+    VARIANT: TransactionNotFound
+    VARIANT: InvalidSearchQuery
+
+DOC: """
+The BlockExplorer provides functionality to explore and query the XYZ Blockchain.
+It allows retrieving detailed information about blocks and transactions, as well as searching the blockchain.
+"""

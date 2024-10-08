@@ -1,0 +1,31 @@
+LANG: rust
+
+FINDEX: 63
+FILE: src/cli/commands/mod.rs
+
+USE: structopt::StructOpt
+USE: crate::core::{Blockchain, Transaction}
+
+#[derive(StructOpt)]
+ENUM: Command
+    VARIANT: StartNode { config_path: String }
+    VARIANT: SendTransaction { from: String, to: String, amount: u64 }
+    VARIANT: GetBalance { address: String }
+    VARIANT: GetBlockInfo { height: u64 }
+
+STRUCT: Cli
+    FIELD: blockchain: Blockchain
+
+IMPL: Cli
+    FN: new(blockchain: Blockchain) -> Self
+    FN: run(&self, command: Command) -> Result<(), CliError>
+
+ENUM: CliError
+    VARIANT: ConfigError
+    VARIANT: TransactionError
+    VARIANT: BlockchainError
+
+DOC: """
+This module defines the command-line interface for interacting with the XYZ Blockchain.
+It provides commands for node management, transaction sending, and blockchain querying.
+"""

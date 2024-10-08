@@ -1,0 +1,26 @@
+LANG: rust
+
+FINDEX: 52
+FILE: src/wallet/error_handling.rs
+
+USE: thiserror::Error
+
+#[derive(Error, Debug)]
+ENUM: WalletError
+    #[error("Account not found")]
+    VARIANT: AccountNotFound
+    #[error("Insufficient balance")]
+    VARIANT: InsufficientBalance
+    #[error("Invalid transaction")]
+    VARIANT: InvalidTransaction
+    #[error("Signing error: {0}")]
+    VARIANT: SigningError(String)
+    #[error("Sync error: {0}")]
+    VARIANT: SyncError(String)
+    #[error("Trust Wallet error: {0}")]
+    VARIANT: TrustWalletError(String)
+
+DOC: """
+This module defines the error types used in the wallet implementation.
+It provides detailed error information for various wallet operations.
+"""

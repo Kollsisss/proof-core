@@ -1,0 +1,254 @@
+LANG: rust
+
+FINDEX: 24
+FILE: src/layer2/xx_protocol/block_xx.rs
+
+USE: crate::core::Transaction
+USE: crate::crypto::hash::Hash
+USE: crate::layer2::xx_protocol::sharding::ShardId
+
+STRUCT: BlockXX
+    FIELD: header: BlockXXHeader
+    FIELD: transactions: Vec<Transaction>
+    FIELD: shard_proofs: Vec<ShardProof>
+
+STRUCT: BlockXXHeader
+    FIELD: previous_hash: Hash
+    FIELD: merkle_root: Hash
+    FIELD: timestamp: u64
+    FIELD: height: u64
+    FIELD: shard_count: u32
+
+STRUCT: ShardProof
+    FIELD: shard_id: ShardId
+    FIELD: shard_root: Hash
+
+IMPL: BlockXX
+    FN: new(previous_hash: Hash, transactions: Vec<Transaction>, shard_proofs: Vec<ShardProof>) -> Self
+    FN: hash(&self) -> Hash
+    FN: verify(&self) -> bool
+
+DOC: """
+The BlockXX struct represents a block in the XX protocol of Layer 2.
+It includes transactions from multiple shards and proofs for each shard's state.
+"""
+
+STRUCTURE:
+[] : FINDEX
+{} : CURRENT FILE
+
+xyz-blockchain/
+├── Cargo.toml[1]
+├── Cargo.lock
+├── src/
+│   ├── lib.rs[2]
+│   ├── main.rs[68]
+│   ├── config.rs[3]
+│   ├── core/
+│   │   ├── mod.rs[4]
+│   │   ├── blockchain.rs[5]
+│   │   ├── state.rs[6]
+│   │   ├── database.rs[7]
+│   │   ├── transaction.rs[8]
+│   │   ├── validation.rs[9]
+│   │   ├── proof_of_stake.rs[10]
+│   │   ├── p2p.rs[11]
+│   │   ├── protocol.rs[73]
+│   │   └── interfaces/
+│   │       ├── mod.rs[15]
+│   │       ├── consensus_interface.rs[16]
+│   │       ├── storage_interface.rs[17]
+│   │       └── network_interface.rs[18]
+│   ├── layer1/
+│   │   ├── mod.rs[19]
+│   │   ├── block_zz.rs[20]
+│   │   └── zz_protocol.rs[21]
+│   ├── layer2/
+│   │   ├── mod.rs[22]
+│   │   ├── tx_pool.rs[74]
+│   │   ├── xx_protocol/
+│   │   │   ├── mod.rs[23]
+│   │   │   ├── {block_xx.rs}[24]
+│   │   │   ├── sharding.rs[25]
+│   │   │   ├── execution.rs[26]
+│   │   │   ├── batch.rs[27]
+│   │   │   └── interfaces/
+│   │   │       ├── mod.rs[28]
+│   │   │       └── execution_interface.rs[38]
+│   │   ├── yy_protocol/
+│   │   │   ├── mod.rs[37]
+│   │   │   ├── block_yy.rs[30]
+│   │   │   ├── altcoin_integration.rs[29]
+│   │   │   ├── crosschain_tx.rs[31]
+│   │   │   ├── liquidity_pools.rs[32]
+│   │   │   └── interfaces/
+│   │   │       ├── mod.rs[34]
+│   │   │       └── cross_chain_interface.rs[36]
+│   │   └── smart_contracts/
+│   │       ├── mod.rs[33]
+│   │       ├── smart_contracts_engine.rs[35]
+│   │       ├── defi/
+│   │       │   ├── mod.rs[39]
+│   │       │   ├── amm.rs[40]
+│   │       │   └── synthetic_assets.rs[41]
+│   │       └── governance/
+│   │           ├── mod.rs[42]
+│   │           └── dao.rs[43]
+│   ├── layer3/
+│   │   ├── mod.rs[44]
+│   │   ├── zk_rollups/
+│   │   │   ├── mod.rs[45]
+│   │   │   ├── prover.rs[46]
+│   │   │   ├── verifier.rs[47]
+│   │   │   └── rollup_batch.rs[75]
+│   │   └── privacy/
+│   │       ├── mod.rs[48]
+│   │       └── zero_knowledge.rs[49]
+│   ├── crypto/
+│   │   ├── mod.rs[12]
+│   │   ├── signatures.rs[13]
+│   │   └── hashing.rs[14]
+│   ├── wallet/
+│   │   ├── mod.rs[50]
+│   │   ├── trust_integration.rs[51]
+│   │   ├── error_handling.rs[52]
+│   │   ├── trust_wallet_types.rs[53]
+│   │   ├── transaction_formatter.rs[54]
+│   │   ├── trust_wallet_sync.rs[55]
+│   │   └── config.rs[56]
+│   ├── node/
+│   │   ├── mod.rs[76]
+│   │   ├── full_node.rs[57]
+│   │   ├── light_client.rs[58]
+│   │   └── node_sync.rs[59]
+│   ├── api/
+│   │   ├── mod.rs[77]
+│   │   ├── rpc/
+│   │   │   └── mod.rs[60]
+│   │   ├── rest/
+│   │   │   └── mod.rs[61]
+│   │   └── websocket/
+│   │       └── trust_wallet_events.rs[62]
+│   ├── cli/
+│   │   ├── mod.rs[78]
+│   │   └── commands/
+│   │       └── mod.rs[63]
+│   └── tools/
+│       ├── mod.rs[64]
+│       ├── block_explorer/
+│       │   └── mod.rs[65]
+│       ├── benchmarks/
+│       │   └── mod.rs[66]
+│       └── network_monitor.rs[67]
+├── tests/
+│   ├── mod.rs[69]
+│   ├── unit/
+│   │   └── mod.rs[70]
+│   └── integration/
+│       ├── mod.rs[71]
+│       └── trust_wallet_integration_tests.rs[72]
+├── docs/
+│   ├── CODE_OF_CONDUCT.md
+│   ├── CONTRIBUTING.md
+│   ├── LICENSE
+│   ├── README.md
+│   ├── whitepaper.md
+│   ├── xyz_api_doc.md
+│   ├── xyz_architecture.md
+│   ├── xyz_contracts_doc.md
+│   ├── xyz_governance.md
+│   ├── xyz_performance.md
+│   ├── xyz_security_doc.md
+│   ├── xyz_tokenomics_doc.md
+│   ├── api_documentation.md
+│   └── trust_wallet_integration_guide.md
+├── scripts/
+│   ├── setup.sh[79]
+│   └── deploy.sh[80]
+└── .github/
+    └── workflows/
+        └── ci.yml[81]
+FILE LIST:
+
+1. Cargo.toml
+2. src/lib.rs
+3. src/config.rs
+4. src/core/mod.rs
+5. src/core/blockchain.rs
+6. src/core/state.rs
+7. src/core/database.rs
+8. src/core/transaction.rs
+9. src/core/validation.rs
+10. src/core/proof_of_stake.rs
+11. src/core/p2p.rs
+12. src/crypto/mod.rs
+13. src/crypto/signatures.rs
+14. src/crypto/hashing.rs
+15. src/core/interfaces/mod.rs
+16. src/core/interfaces/consensus_interface.rs
+17. src/core/interfaces/storage_interface.rs
+18. src/core/interfaces/network_interface.rs
+19. src/layer1/mod.rs
+20. src/layer1/block_zz.rs
+21. src/layer1/zz_protocol.rs
+22. src/layer2/mod.rs
+23. src/layer2/xx_protocol/mod.rs
+24. {src/layer2/xx_protocol/block_xx.rs}
+25. src/layer2/xx_protocol/sharding.rs
+26. src/layer2/xx_protocol/execution.rs
+27. src/layer2/xx_protocol/batch.rs
+28. src/layer2/xx_protocol/interfaces/mod.rs
+29. src/layer2/yy_protocol/altcoin_integration.rs
+30. src/layer2/yy_protocol/block_yy.rs
+31. src/layer2/yy_protocol/crosschain_tx.rs
+32. src/layer2/yy_protocol/liquidity_pools.rs
+33. src/layer2/smart_contracts/mod.rs
+34. src/layer2/yy_protocol/interfaces/mod.rs
+35. src/layer2/smart_contracts/smart_contracts_engine.rs
+36. src/layer2/yy_protocol/interfaces/cross_chain_interface.rs
+37. src/layer2/yy_protocol/mod.rs
+38. src/layer2/xx_protocol/interfaces/execution_interface.rs
+39. src/layer2/smart_contracts/defi/mod.rs
+40. src/layer2/smart_contracts/defi/amm.rs
+41. src/layer2/smart_contracts/defi/synthetic_assets.rs
+42. src/layer2/smart_contracts/governance/mod.rs
+43. src/layer2/smart_contracts/governance/dao.rs
+44. src/layer3/mod.rs
+45. src/layer3/zk_rollups/mod.rs
+46. src/layer3/zk_rollups/prover.rs
+47. src/layer3/zk_rollups/verifier.rs
+48. src/layer3/privacy/mod.rs
+49. src/layer3/privacy/zero_knowledge.rs
+50. src/wallet/mod.rs
+51. src/wallet/trust_integration.rs
+52. src/wallet/error_handling.rs
+53. src/wallet/trust_wallet_types.rs
+54. src/wallet/transaction_formatter.rs
+55. src/wallet/trust_wallet_sync.rs
+56. src/wallet/config.rs
+57. src/node/full_node.rs
+58. src/node/light_client.rs
+59. src/node/node_sync.rs
+60. src/api/rpc/mod.rs
+61. src/api/rest/mod.rs
+62. src/api/websocket/trust_wallet_events.rs
+63. src/cli/commands/mod.rs
+64. src/tools/mod.rs
+65. src/tools/block_explorer/mod.rs
+66. src/tools/benchmarks/mod.rs
+67. src/tools/network_monitor.rs
+68. src/main.rs
+69. tests/mod.rs
+70. tests/unit/mod.rs
+71. tests/integration/mod.rs
+72. tests/integration/trust_wallet_integration_tests.rs
+73. src/core/protocol.rs
+74. src/layer2/tx_pool.rs
+75. src/layer3/zk_rollups/rollup_batch.rs
+76. src/node/mod.rs
+77. src/api/mod.rs
+78. src/cli/mod.rs
+79. scripts/setup.sh
+80. scripts/deploy.sh
+81. .github/workflows/ci.yml
+            

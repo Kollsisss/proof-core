@@ -1,0 +1,26 @@
+LANG: rust
+
+FINDEX: 59
+FILE: src/node/node_sync.rs
+
+USE: crate::core::{Block, BlockHeader}
+USE: crate::network::P2PNetwork
+
+STRUCT: NodeSynchronizer
+    FIELD: network: P2PNetwork
+
+IMPL: NodeSynchronizer
+    FN: new(network: P2PNetwork) -> Self
+    FN: sync_blockchain(&mut self, current_height: u64) -> Result<Vec<Block>, SyncError>
+    FN: sync_headers(&mut self, current_height: u64) -> Result<Vec<BlockHeader>, SyncError>
+    FN: request_blocks(&self, start_height: u64, end_height: u64) -> Result<Vec<Block>, SyncError>
+
+ENUM: SyncError
+    VARIANT: NetworkError
+    VARIANT: InvalidBlockData
+    VARIANT: PeerDisconnected
+
+DOC: """
+The NodeSynchronizer struct provides functionality for synchronizing blockchain data between nodes.
+It handles both full blockchain synchronization and header-only synchronization for light clients.
+"""

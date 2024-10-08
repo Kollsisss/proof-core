@@ -1,0 +1,14 @@
+LANG: rust
+
+FINDEX: 71
+FILE: tests/integration/mod.rs
+
+MOD: blockchain_tests
+MOD: network_tests
+MOD: consensus_tests
+MOD: trust_wallet_integration_tests
+
+DOC: """
+This module contains integration tests for the XYZ Blockchain.
+These tests verify the correct interaction between different components of the system.
+"""

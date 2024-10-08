@@ -1,0 +1,31 @@
+LANG: rust
+
+FINDEX: 56
+FILE: src/wallet/config.rs
+
+USE: serde::{Deserialize, Serialize}
+
+#[derive(Deserialize, Serialize)]
+STRUCT: WalletConfig
+    FIELD: trust_wallet_api_key: String
+    FIELD: network: NetworkType
+    FIELD: sync_interval: u64
+
+ENUM: NetworkType
+    VARIANT: Mainnet
+    VARIANT: Testnet
+
+IMPL: WalletConfig
+    FN: new(trust_wallet_api_key: String, network: NetworkType, sync_interval: u64) -> Self
+    FN: load_from_file(path: &str) -> Result<Self, ConfigError>
+    FN: save_to_file(&self, path: &str) -> Result<(), ConfigError>
+
+ENUM: ConfigError
+    VARIANT: FileNotFound
+    VARIANT: InvalidFormat
+    VARIANT: WriteError
+
+DOC: """
+This module defines the configuration structure for the wallet integration.
+It includes settings for the Trust Wallet API, network selection, and synchronization intervals.
+"""
